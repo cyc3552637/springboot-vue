@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC 
+"-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dchealth.publichealth.dao.UserMapper">
+  <insert id="insertUser" useGeneratedKeys="true" keyProperty="id"
+  parameterType="com.dchealth.publichealth.model.User">
+    insert into users (username, password, age,birth,email)
+    values (
+    #{username},
+    #{password},
+    #{age},
+    #{birth},
+    #{email})
+  </insert>
+  
+  <resultMap type="com.dchealth.publichealth.model.User" id="userResultMap">
+  	<id property="id" column="id"/>
+  	<result property="username" column="username"/>
+  	<result property="password" column="password"/>
+  	<result property="age" column="age"/>
+  	<result property="birth" column="birth" javaType="java.sql.Date" jdbcType="DATE"/>
+  	<result property="email" column="email"/>
+  </resultMap>
+  <select id="selectAllUsers" resultMap="userResultMap">
+  	select * from users
+  </select>
+  
+  <select id="selectUsersByPage" resultMap="userResultMap">
+  	select * from users order by id desc
+  </select>
+
+  <delete id="deleteUser" parameterType="int">
+  	delete from users
+  	<where>
+  		id = #{id}
+  	</where>
+  </delete>
+</mapper>
