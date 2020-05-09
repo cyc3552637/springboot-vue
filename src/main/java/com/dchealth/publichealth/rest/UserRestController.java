@@ -18,7 +18,7 @@ import com.dchealth.publichealth.model.User;
 import com.dchealth.publichealth.service.UserService;
 
 @RestController
-@RequestMapping(value="/user-rest")
+@RequestMapping(value="/publichealth/user-rest")
 public class UserRestController {
 
 	//springboot默认日志记录
